@@ -17,23 +17,45 @@ class ViewController: UIViewController {
     
     let imageNames = ["rock","paper", "scissors" ]
     
+    var first_Image:String = ""
+    var second_Image:String = ""
+    
+    @IBOutlet var result: UILabel!
     
     @IBAction func player1Go(_ sender: Any) {
-        
         let randomImage1 = imageNames.randomElement()
+         
+         if let imageName1 = randomImage1{
+                     imagePlayer1.image = UIImage(named:imageName1)
+                         first_Image = imageName1 }
         
-        if let imageName = randomImage1{
-                    imagePlayer1.image = UIImage(named:imageName)
-                 }
     }
+
     
     @IBAction func player2Go(_ sender: Any) {
+        let randomImage2 = imageNames.randomElement()
+                               
+                      if let imageName2 = randomImage2{
+                                  imagePlayer2.image = UIImage(named:imageName2)
+                                 second_Image = imageName2}
         
-        let randomImage = imageNames.randomElement()
-                        
-               if let imageName = randomImage{
-                           imagePlayer2.image = UIImage(named:imageName)
-                        }
+      if first_Image == "rock" && second_Image == "scissors"{
+            result.text = "Person1 wins"
+        }else if first_Image == "scissors" && second_Image == "rock"{
+            result.text = "Person2 wins"
+        }else if first_Image == "scissors" && second_Image == "paper"{
+            result.text = "Person1 wins"
+        }else if first_Image == "paper" && second_Image == "scissors"{
+            result.text = "Person2 wins"
+        }else if first_Image == "paper" && second_Image == "rock"{
+            result.text = "Person1 wins"
+        }else if first_Image == "rock" && second_Image == "paper"{
+            result.text = "Person2 wins"
+        }else{
+            result.text = "Match Draw"
+        }
+        
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
